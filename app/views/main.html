@@ -1,0 +1,48 @@
+<div class="header well well-sm">
+  <ul class="nav nav-pills" data-tabs="tabs">
+    <a class="btn btn-info pull-right" ng-click="save();">Save</a>
+    <a class="btn btn-default pull-left" ng-click="reset();">Reset</a>
+    <div class="title">
+      <span>Hour Calculator</span>
+    </div>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-5 column-header">Hour</div>
+    <div class="col-xs-5 column-header">Minute</div>
+    <div class="col-xs-2 "></div>
+  </div>
+
+
+  <div ng-repeat="entry in data" class="row">
+    <div class="col-xs-5 entry"><span>{{entry.hour}}</span></div>
+    <div class="col-xs-5 entry">{{entry.minute}}</div>
+    <div class="col-xs-2 ">
+      <button class="btn btn-sm btn-danger" ng-click="remove($index);">X</button>
+    </div>
+  </div>
+
+
+  <form class="row" style="margin-top: 2em;">
+    <div class="col-xs-5 form-group">
+      <input type="number" class="form-control" placeholder="hour"
+             ng-model="addHour" min="0"/></div>
+    <div class="col-xs-5 ">
+      <input type="number" class="form-control" placeholder="minute"
+             ng-model="addMinute" min="0"/></div>
+    <div class="col-xs-2 " style="padding-top: 6px;">
+      <button ng-click="add();" class="btn btn-sm btn-success">+</button>
+    </div>
+  </form>
+
+
+  <div class="row" style="margin-top: 2em;">
+    <div class="col-xs-5 total">{{totalHour}}</div>
+    <div class="col-xs-5 total">{{totalMinute}}</div>
+  </div>
+
+  <span>{{dataLength}}</span>
+
+</div>
