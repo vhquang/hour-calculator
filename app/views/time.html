@@ -1,0 +1,73 @@
+<div class="header well well-sm">
+  <ul class="nav nav-pills" data-tabs="tabs">
+    <a class="btn btn-info pull-right" ng-click="save();">Save</a>
+    <a class="btn btn-default pull-left" ng-click="reset();">Reset</a>
+    <div class="title">
+      <span>Time Calculator</span>
+    </div>
+  </ul>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 column-header">Time</div>
+    <div class="col-xs-3 column-header">Length</div>
+    <div class="col-xs-1 "></div>
+  </div>
+
+
+  <div ng-repeat="entry in data" class="row">
+    <div class="col-xs-8 entry">
+      <div class="input-group col-xs-6">
+        <input type="time" class="form-control time-input"
+               ng-model="entry.timeIn" min="0"/>
+      </div>
+      <div class="input-group col-xs-6">
+        <input type="time" class="form-control"
+               ng-model="entry.timeOut" min="0"/>
+      </div>
+    </div>
+    <div class="col-xs-3 entry">{{entry.duration}}</div>
+    <div class="col-xs-1 ">
+      <button class="btn btn-sm btn-danger" ng-click="removeTime($index);">X</button>
+    </div>
+  </div>
+
+
+  <form class="row" style="margin-top: 2em;">
+
+    <div class="col-xs-4 form-group">
+      <div class="input-group">
+        <span class="input-group-addon">In</span>
+        <input type="time" class="form-control"
+               ng-model="newTimeIn" min="0"/>
+      </div>
+    </div>
+
+    <div class="col-xs-4 form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Out</span>
+        <input type="time" class="form-control"
+               ng-model="newTimeOut" min="0"/>
+      </div>
+    </div>
+
+    <div class="col-xs-3 " ><span>{{duration}}</span></div>
+    <div class="col-xs-1 " style="padding-top: 6px;">
+      <button ng-click="addNewTime(newTimeIn,newTimeOut);" class="btn btn-sm btn-success">+</button>
+    </div>
+  </form>
+
+
+  <div class="row" style="margin-top: 2em;">
+    <div class="col-xs-2 col-xs-offset-8 total">{{totalTime}}</div>
+  </div>
+
+
+</div>
+
+
+<!--<div class="text-center">-->
+  <!--<button class="btn btn-info" ng-click="reset();">Reset</button>-->
+<!--</div>-->
