@@ -3,13 +3,11 @@
 angular.module('hourApp')
   .controller('TimeCtrl', function ($scope, Time) {
 
-//    $scope.data = [];
-    window.$scope = $scope;
-    window.test = Time;
-    $scope.data = [
-      {"timeIn": "01:01", "timeOut": "01:03", "duration": "00:05"},
-      {"timeIn": "00:30", "timeOut": "01:35", "duration": "00:05"}
-    ];
+    $scope.data = [];
+//    $scope.data = [
+//      {"timeIn": "01:01", "timeOut": "01:03", "duration": "00:05"},
+//      {"timeIn": "00:30", "timeOut": "01:35", "duration": "00:05"}
+//    ];
 
     $scope.$watch('data', function() {
       $scope.totalTime = getTotalTime();
@@ -66,8 +64,18 @@ angular.module('hourApp')
       return totalTime.toString();
     }
 
+    function setHeight(input, element, index, offset) {
+      var inputId = input + index,
+        elementId = element + index;
+      var height = document.getElementById(inputId).clientHeight;
+      document.getElementById(elementId).style.height = height + "px";
+      document.getElementById(elementId).style.paddingTop = (height/2 - parseInt(offset)) + "px";
+      return height;
+    }
+
     $scope.addNewTime = addNewTime;
     $scope.removeTime = removeTime;
     $scope.getDuration = getDuration;
     $scope.reset = reset;
+    $scope.setHeight = setHeight;
   });

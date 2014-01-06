@@ -1,7 +1,7 @@
 <div class="header well well-sm">
   <ul class="nav nav-pills" data-tabs="tabs">
-    <a class="btn btn-info pull-right" ng-click="save();">Save</a>
-    <a class="btn btn-default pull-left" ng-click="reset();">Reset</a>
+    <!--<a class="btn btn-info pull-right" ng-click="save();">Save</a>-->
+    <a class="btn btn-default pull-left" onclick="history.go(-1);">Back</a>
     <div class="title">
       <span>Time Calculator</span>
     </div>
@@ -18,37 +18,45 @@
 
 
   <div ng-repeat="entry in data" class="row">
-    <div class="col-xs-8 entry">
+
+    <div id="input{{$index}}" class="col-xs-8 entry" style="background-color: transparent; border: none;">
       <div class="input-group col-xs-6">
-        <input type="time" class="form-control time-input"
+        <input type="time" class="form-control time-in"
                ng-model="entry.timeIn" min="0"/>
       </div>
       <div class="input-group col-xs-6">
-        <input type="time" class="form-control"
+        <input type="time" class="form-control time-out"
                ng-model="entry.timeOut" min="0"/>
       </div>
     </div>
-    <div class="col-xs-3 entry">{{entry.duration}}</div>
-    <div class="col-xs-1 ">
+
+    <div id="duration{{$index}}" class="col-xs-3 text-center">
+      <span class="entry" style="padding:5px; border-radius:5px;">{{entry.duration}}</span>
+    </div>
+
+    <div id="removeBtn{{$index}}" class="col-xs-1 text-center">
       <button class="btn btn-sm btn-danger" ng-click="removeTime($index);">X</button>
     </div>
+
+    <span style="display:none;">
+      {{ setHeight('input', 'duration', $index, '10'); }}
+      {{ setHeight('input', 'removeBtn', $index, '12'); }}
+    </span>
+
   </div>
 
 
   <form class="row" style="margin-top: 2em;">
 
-    <div class="col-xs-4 form-group">
-      <div class="input-group">
+    <div class="col-xs-8 form-group">
+      <div class="input-group col-xs-6">
         <span class="input-group-addon">In</span>
-        <input type="time" class="form-control"
+        <input type="time" class="form-control time-in"
                ng-model="newTimeIn" min="0"/>
       </div>
-    </div>
-
-    <div class="col-xs-4 form-group">
-      <div class="input-group">
+      <div class="input-group col-xs-6">
         <span class="input-group-addon">Out</span>
-        <input type="time" class="form-control"
+        <input type="time" class="form-control time-out"
                ng-model="newTimeOut" min="0"/>
       </div>
     </div>
@@ -61,7 +69,11 @@
 
 
   <div class="row" style="margin-top: 2em;">
-    <div class="col-xs-2 col-xs-offset-8 total">{{totalTime}}</div>
+    <div class="col-xs-4">
+      <button class="btn btn-default pull-left" ng-click="reset();">Reset</button>
+    </div>
+    <span class="col-xs-4 text-right" style="color:#DEA147; font-size:19px;">Total:</span>
+    <div class="col-xs-4 text-center total">{{totalTime}}</div>
   </div>
 
 

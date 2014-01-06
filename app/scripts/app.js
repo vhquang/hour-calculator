@@ -7,8 +7,8 @@ angular.module('hourApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/time.html',
-        controller: 'TimeCtrl'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
       })
       .when('/main', {
         templateUrl: 'views/main.html',
